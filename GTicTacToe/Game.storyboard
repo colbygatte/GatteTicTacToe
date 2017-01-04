@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game View Controller-->
+        <scene sceneID="4x5-jC-7Vf">
+            <objects>
+                <viewController storyboardIdentifier="Game" id="cMw-RD-BFJ" customClass="GameViewController" customModule="GTicTacToe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9G6-OL-bgd"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZJj-Fn-dup"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wNJ-Au-7TB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qhv-W4-p1p" customClass="BoardView" customModule="GTicTacToe" customModuleProvider="target">
+                                <rect key="frame" x="30" y="74" width="354" height="354"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Qhv-W4-p1p" secondAttribute="height" multiplier="1:1" id="h6f-Gf-qKE"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICb-8P-zsm">
+                                <rect key="frame" x="13" y="499" width="389" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="newgame.png"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x68-zg-THz">
+                                <rect key="frame" x="108" y="636" width="198" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qhv-W4-p1p" secondAttribute="trailing" constant="10" id="9ZA-gI-ghi"/>
+                            <constraint firstItem="Qhv-W4-p1p" firstAttribute="leading" secondItem="wNJ-Au-7TB" secondAttribute="leadingMargin" constant="10" id="Yxf-Fu-dLK"/>
+                            <constraint firstItem="Qhv-W4-p1p" firstAttribute="top" secondItem="9G6-OL-bgd" secondAttribute="bottom" constant="10" id="l4l-sn-WBw"/>
+                            <constraint firstItem="Qhv-W4-p1p" firstAttribute="centerX" secondItem="wNJ-Au-7TB" secondAttribute="centerX" id="rXI-Qt-HgI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xfW-Wb-EFN"/>
+                    <connections>
+                        <outlet property="boardView" destination="Qhv-W4-p1p" id="FK4-LR-FlH"/>
+                        <outlet property="turnLabel" destination="x68-zg-THz" id="ejr-Oi-9wk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y9Z-4g-Zqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1094.2028985507247" y="74.184782608695656"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1Oz-bd-Cxf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KuD-fC-6gK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="z0f-cl-XAt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cMw-RD-BFJ" kind="relationship" relationship="rootViewController" id="Fwl-GI-WAH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BU4-SR-Ex8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="156" y="74.212893553223395"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="newgame.png" width="639" height="183"/>
+    </resources>
+</document>
