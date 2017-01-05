@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         App.setupTheme()
         FIRApp.configure()
         DB.ref = FIRDatabase.database().reference()
-        DB.usersRef = FIRDatabase.database().reference().child("users")
+        DB.usernamesRef = FIRDatabase.database().reference().child("usernames")
         DB.gamesRef = FIRDatabase.database().reference().child("games")
         
         if #available(iOS 10.0, *) {

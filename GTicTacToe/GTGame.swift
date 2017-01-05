@@ -37,6 +37,7 @@ class GTGame: NSObject {
         player1Uid = values["player1Uid"] as! String
         player2Uid = values["player2Uid"] as! String
         nextToPlay = values["nextToPlay"] as! String
+        gameWinner = values["gameWinner"] as? String
         
         if player1Uid == App.loggedInUser.uid {
             localPlayerUid = player1Uid
@@ -67,6 +68,7 @@ class GTGame: NSObject {
         object["player2Uid"] = player2Uid
         object["playsLeft"] = playsLeft
         object["nextToPlay"] = nextToPlay
+        object["gameWinner"] = gameWinner
         
         var usersObject: [String: Any] = [:]
         usersObject[localPlayerUid] = localPlayer

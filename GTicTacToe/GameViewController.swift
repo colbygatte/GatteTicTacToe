@@ -31,17 +31,40 @@ class GameViewController: UIViewController {
     
     func begin() {
         DB.gamesRef.child(loadGameId).observe(.value, with: { snap in
-            self.game = GTGame(snapshot: snap)
-            self.boardView.game = self.game!
-            DispatchQueue.main.async {
-                self.boardView.loadGame()
-                self.updateLabel()
+            if snap.childrenCount == 0 {
+                print("ERROR")
+            } else {
+                self.game = GTGame(snapshot: snap)
+
+                self.boardView.game = self.game!
+                DispatchQueue.main.async {
+                    self.boardView.loadGame()
+                    self.updateLabel()
+                }
             }
         })
     }
     
+    func declareWinner() {
+        if game?.gameWinner == game?.localPlayerUid {
+            App.loggedInUser.won(against: game!.remotePlayerUid)
+            DB.increaseLost(uid: game!.remotePlayerUid)
+        } else {
+            App.loggedInUser.lost(against: game!.remotePlayerUid)
+            DB.increaseWon(uid: game!.remotePlayerUid)
+        }
+        
+        DB.save(user: App.loggedInUser)
+    }
+    
     func updateLabel() {
-        if game!.nextToPlay == game!.localPlayerUid {
+        if game!.gameWinner != nil {
+            if game!.gameWinner! == App.loggedInUid {
+                turnLabel.text = "YOU WIN!"
+            } else {
+                turnLabel.text = "You lose."
+            }
+        } else if game!.nextToPlay == game!.localPlayerUid {
             turnLabel.text = "Your turn"
         } else {
             turnLabel.text = "Not your turn"
@@ -56,9 +79,13 @@ class GameViewController: UIViewController {
 extension GameViewController: BoardViewDelegate  {
     func board(playedPosition: Int) {
         DB.save(game: game!)
-        updateLabel()
+        
+        if game?.gameWinner != nil {
+            declareWinner()
+        } else {
+            updateLabel()
+        }
     }
-    
     
     func winner(local: Bool) {
         if local {

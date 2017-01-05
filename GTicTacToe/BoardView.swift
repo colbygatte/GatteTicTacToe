@@ -29,6 +29,9 @@ class BoardView: UIView {
     var game: GTGame!
     var imageViews: [Int: UIImageView]!
     
+    var localImage: UIImage?
+    var remoteImage: UIImage?
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         setup()
@@ -39,45 +42,57 @@ class BoardView: UIView {
         setup()
     }
     
-    func setFrame() {
-        boardView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
-    }
-    
     func setup() {
         Bundle.main.loadNibNamed("BoardView", owner: self, options: nil)
         addSubview(boardView)
         imageViews = [1: cell11, 2: cell12, 4: cell13, 8: cell21, 16: cell22, 32: cell23, 64: cell31, 128: cell32, 256: cell33]
-        
+
         for imageView in imageViews {
             imageView.value.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped(recognizer:))))
         }
     }
     
+    func setFrame() {
+        boardView.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
+    }
+    
     func loadGame() {
-        let bits = [1, 2, 4, 8, 16, 32, 64, 128, 256]
+        if game.player1Uid == game.localPlayerUid {
+            localImage = UIImage(named: "x.png")
+            remoteImage = UIImage(named: "o.png")
+        } else {
+            localImage = UIImage(named: "o.png")
+            remoteImage = UIImage(named: "x.png")
+        }
         
-        for bit in bits {
+        for bit in [1, 2, 4, 8, 16, 32, 64, 128, 256] {
             if game.localPlayer & bit != 0 {
-                imageViews[bit]?.image = UIImage(named: "x.png")
+                imageViews[bit]?.image = localImage
             } else if game.remotePlayer & bit != 0 {
-                imageViews[bit]?.image = UIImage(named: "o.png")
+                imageViews[bit]?.image = remoteImage
             }
         }
     }
     
+    // checkForWinner is only called after a player makes a move
+    // so we update the stats for both users in GameViewController when the delegate method board is called
     func played(_ played: Int) {
         if game.nextToPlay == game.localPlayerUid {
             game.play(played)
-            imageViews[played]?.image = UIImage(named: "x.png")
-            delegate?.board(playedPosition: played)
-            
+            imageViews[played]?.image = localImage
+            game.checkForWinner()
             if game.gameWinner != nil {
-                print("LOCAL WON!")
+                DB.save(game: game)
             }
+            delegate?.board(playedPosition: played)
         }
     }
     
     func tapped(recognizer: UITapGestureRecognizer) {
+        if game.gameWinner != nil {
+            return
+        }
+        
         if let imageView = recognizer.view as? UIImageView {
             switch imageView {
             case cell11:

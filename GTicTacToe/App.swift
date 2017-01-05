@@ -10,6 +10,7 @@ import UIKit
 
 struct App {
     static var loggedInUser: GTUser!
+    static var loggedInUid: String!
     static var apnToken: String!
     
     struct Theme {
