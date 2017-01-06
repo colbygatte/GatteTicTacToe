@@ -10,8 +10,6 @@ import UIKit
 
 protocol BoardViewDelegate {
     func board(playedPosition: Int)
-    func winner(local: Bool)
-    func tie()
 }
 
 class BoardView: UIView {
@@ -70,6 +68,8 @@ class BoardView: UIView {
                 imageViews[bit]?.image = localImage
             } else if game.remotePlayer & bit != 0 {
                 imageViews[bit]?.image = remoteImage
+            } else {
+                imageViews[bit]?.image = nil
             }
         }
     }
@@ -77,8 +77,7 @@ class BoardView: UIView {
     // checkForWinner is only called after a player makes a move
     // so we update the stats for both users in GameViewController when the delegate method board is called
     func played(_ played: Int) {
-        if game.nextToPlay == game.localPlayerUid {
-            game.play(played)
+        if game.nextToPlay == game.localPlayerUid && game.play(played) {
             imageViews[played]?.image = localImage
             game.checkForWinner()
             if game.gameWinner != nil {
@@ -94,38 +93,41 @@ class BoardView: UIView {
         }
         
         if let imageView = recognizer.view as? UIImageView {
-            switch imageView {
-            case cell11:
-                played(1)
-                break
-            case cell12:
-                played(2)
-                break
-            case cell13:
-                played(4)
-                break
-            case cell21:
-                played(8)
-                break
-            case cell22:
-                played(16)
-                break
-            case cell23:
-                played(32)
-                break
-            case cell31:
-                played(64)
-                break
-            case cell32:
-                played(128)
-                break
-            case cell33:
-                played(256)
-                break
-            default:
-                print("error")
-                break
+            if let play = imageView.restorationIdentifier {
+                played(Int(play)!)
             }
+//            switch imageView {
+//            case cell11:
+//                played(1)
+//                break
+//            case cell12:
+//                played(2)
+//                break
+//            case cell13:
+//                played(4)
+//                break
+//            case cell21:
+//                played(8)
+//                break
+//            case cell22:
+//                played(16)
+//                break
+//            case cell23:
+//                played(32)
+//                break
+//            case cell31:
+//                played(64)
+//                break
+//            case cell32:
+//                played(128)
+//                break
+//            case cell33:
+//                played(256)
+//                break
+//            default:
+//                print("error")
+//                break
+//            }
         }
     }
 }

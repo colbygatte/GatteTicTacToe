@@ -37,7 +37,7 @@ class GTUser: NSObject {
         self.uid = uid
         self.username = username
         won = [:]
-        won = [:]
+        lost = [:]
         games = [:]
     }
     

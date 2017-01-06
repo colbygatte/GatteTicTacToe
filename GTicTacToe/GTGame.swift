@@ -11,28 +11,27 @@ import Firebase
 
 class GTGame: NSObject {
     var id: String!
-    var localPlayer: Int = 0
-    var remotePlayer: Int = 0
-    
+    let winningCombos = [7, 56, 448, 73, 146, 292, 273, 84]
     var localPlayerUid: String!
     var remotePlayerUid: String!
+    var cat: Int!
     
     // These are just so the player UID's don't keep switching in the database
     var player1Uid: String!
     var player2Uid: String!
     
+    var playsLeft = 511
+    var localPlayer: Int = 0
+    var remotePlayer: Int = 0
     var nextToPlay: String!
     var gameWinner: String?
-    
-    var playsLeft = 511
-    
-    let winningCombos = [7, 56, 448, 73, 146, 292, 273, 84]
     
     init(snapshot: FIRDataSnapshot) {
         id = snapshot.key
         
         let values = snapshot.value as! [String: Any]
         playsLeft = values["playsLeft"] as! Int
+        cat = values["cat"] as! Int
         
         player1Uid = values["player1Uid"] as! String
         player2Uid = values["player2Uid"] as! String
@@ -59,6 +58,15 @@ class GTGame: NSObject {
         self.remotePlayerUid = remotePlayerUid
         self.player1Uid = localPlayerUid
         self.player2Uid = remotePlayerUid
+        self.cat = 0
+        coinToss()
+    }
+    
+    func reset() {
+        playsLeft = 511
+        remotePlayer = 0
+        localPlayer = 0
+        gameWinner = nil
         coinToss()
     }
     
@@ -69,6 +77,7 @@ class GTGame: NSObject {
         object["playsLeft"] = playsLeft
         object["nextToPlay"] = nextToPlay
         object["gameWinner"] = gameWinner
+        object["cat"] = cat
         
         var usersObject: [String: Any] = [:]
         usersObject[localPlayerUid] = localPlayer
@@ -92,7 +101,6 @@ class GTGame: NSObject {
             playsLeft -= play
             localPlayer += play
             nextToPlay = remotePlayerUid
-            checkForWinner()
             return true
         }
         return false
@@ -103,6 +111,11 @@ class GTGame: NSObject {
             if localPlayer & combo == combo {
                 gameWinner = localPlayerUid
             }
+        }
+        
+        if playsLeft == 0 && gameWinner == nil {
+            gameWinner = "C"
+            cat = cat + 1
         }
     }
 }

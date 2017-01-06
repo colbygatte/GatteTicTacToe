@@ -6,6 +6,8 @@
 	<string>ca-app-pub-3940256099942544/2934735716</string>
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 	<key>CLIENT_ID</key>
 	<string>1044174975922-veaql8rp4jifscoh6l5jvdvl0c3pi6bc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>

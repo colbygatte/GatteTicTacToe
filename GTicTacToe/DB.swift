@@ -9,10 +9,34 @@
 import Foundation
 import Firebase
 
+enum GTGameStatus {
+    case localWon, remoteWon, localTurn, remoteTurn
+}
+
 class DB {
     static var ref: FIRDatabaseReference!
     static var gamesRef: FIRDatabaseReference!
     static var usernamesRef: FIRDatabaseReference!
+    
+    static func gameStatus(gameid: String, completion: @escaping (GTGameStatus)->()) {
+        DB.gamesRef.child(gameid).observe(.value, with: { snap in
+            let game = GTGame(snapshot: snap)
+            
+            if game.gameWinner == nil {
+                if game.nextToPlay == App.loggedInUid {
+                    completion(.localTurn)
+                } else {
+                    completion(.remoteTurn)
+                }
+            } else  {
+                if game.gameWinner! == App.loggedInUid {
+                    completion(.localWon)
+                } else {
+                    completion(.remoteWon)
+                }
+            }
+        })
+    }
     
     static func save(game: GTGame) {
         DB.gamesRef.child(game.id).setValue(game.toFirebaseObject())
@@ -71,6 +95,12 @@ class DB {
             } else {
                 ref.setValue(1)
             }
+        })
+    }
+    
+    static func observeUser(uid: String, completion: @escaping (FIRDataSnapshot)->()) {
+        DB.ref.child("userData").child(App.loggedInUid).observe(.value, with: { snap in
+            completion(snap)
         })
     }
 }

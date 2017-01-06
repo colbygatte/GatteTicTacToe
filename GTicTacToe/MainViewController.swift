@@ -12,30 +12,25 @@ import Firebase
 class MainViewController: UIViewController {
     @IBOutlet weak var playUserTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var xImageView: UIImageView!
-    @IBOutlet weak var oImageView: UIImageView!
-    @IBOutlet weak var xSelectedImageView: UIImageView!
-    @IBOutlet weak var oSelectedImageView: UIImageView!
+    @IBOutlet weak var winsLabel: UILabel!
+    @IBOutlet weak var lossesLabel: UILabel!
     
     var gamesLoaded = false
     var gameIds: [String]!
+    var opponentUids: [String]!
     
-    var is_o: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTheme()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "MainCell")
         gameIds = []
-        
-        let tapx = UITapGestureRecognizer(target: self, action: #selector(tapped(recognizer:)))
-        xImageView.addGestureRecognizer(tapx)
-        let tapo = UITapGestureRecognizer(target: self, action: #selector(tapped(recognizer:)))
-        oImageView.addGestureRecognizer(tapo)
-        oSelectedImageView.alpha = 0.0
+        opponentUids = []
 
         auth()
+        
     }
     
     // Step 1
@@ -64,15 +59,13 @@ class MainViewController: UIViewController {
     
     // Step 3
     func loadUserData() {
-        DB.ref.child("userData").child(App.loggedInUid).observe(.value, with: { snap in
+        DB.observeUser(uid: App.loggedInUid) { snap in
             let values = snap.value as? [String: Any]
             if let games = values?["games"] as? [String: String] {
                 App.loggedInUser.games = games
             } else {
                 App.loggedInUser.games = [:]
             }
-            self.gameIds = Array(App.loggedInUser.games.values)
-            self.displayGames()
             
             if let won = values?["won"] as? [String: Int] {
                 App.loggedInUser.won = won
@@ -81,58 +74,58 @@ class MainViewController: UIViewController {
             if let lost = values?["lost"] as? [String: Int] {
                 App.loggedInUser.lost = lost
             }
-        })
+            
+            self.gameIds = Array(App.loggedInUser.games.values)
+            self.opponentUids = Array(App.loggedInUser.games.keys)
+            self.displayGames()
+        }
     }
     
     // Step 4
     func displayGames() {
+        winsLabel.text = String(App.loggedInUser.totalWon)
+        lossesLabel.text = String(App.loggedInUser.totalLost)
+        
         tableView.reloadData()
     }
     
     
     func sendToCreateUsername() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "CreateUsername")
-        navigationController?.pushViewController(vc!, animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CreateUsername") as! CreateUsernameViewController
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    func tapped(recognizer: UITapGestureRecognizer) {
-        if let imageView = recognizer.view as? UIImageView {
-            if imageView == xImageView {
-                is_o = false
-                animate() {
-                    self.xSelectedImageView.alpha = 1.0
-                    self.oSelectedImageView.alpha = 0.0
+    @IBAction func addFriendButtonPressed() {
+        let alert = UIAlertController(title: "Add friend", message: "Enter username", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: nil)
+        let add = UIAlertAction(title: "Add", style: .default) { alertAction in
+            if let playUser = alert.textFields?[0].text {
+                if playUser != App.loggedInUser.username {
+                
+                    DB.userExists(username: playUser, completion: { uid in
+                        if uid != nil {
+                            self.createNewGame(playAgainst: uid!)
+                        } else {
+                            self.addFriendError()
+                        }
+                    })
                 }
             } else {
-                is_o = true
-                animate() {
-                    self.xSelectedImageView.alpha = 0.0
-                    self.oSelectedImageView.alpha = 1.0
-                }
+                self.addFriendError()
             }
         }
+        alert.addAction(add)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
     
-    func animate(block: @escaping ()->()) {
-        UIView.animate(withDuration: TimeInterval(0.2)) { 
-            block()
-        }
-    }
-    
-    @IBAction func newGameButtonPressed() {
-        if let playUser = playUserTextField.text {
-            if playUser == App.loggedInUser.username {
-                return
-            }
-            
-            DB.userExists(username: playUser, completion: { uid in
-                if uid != nil {
-                    self.createNewGame(playAgainst: uid!)
-                }
-            })
-        } else {
-            
-        }
+    func addFriendError() {
+        let alert = UIAlertController(title: "Error", message: "That user doesn't exist.", preferredStyle: .alert)
+        let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alert.addAction(okay)
+        present(alert, animated: true, completion: nil)
     }
     
     // Here, we check to see if local user already has a game ID with the remote user.
@@ -142,11 +135,7 @@ class MainViewController: UIViewController {
         } else {
             let gameRef = DB.gamesRef.childByAutoId()
             let game: GTGame
-            if self.is_o {
-                game = GTGame(id: gameRef.key, localPlayerUid: uid, remotePlayerUid: App.loggedInUser.uid)
-            } else {
-                game = GTGame(id: gameRef.key, localPlayerUid: App.loggedInUser.uid, remotePlayerUid: uid)
-            }
+            game = GTGame(id: gameRef.key, localPlayerUid: uid, remotePlayerUid: App.loggedInUser.uid)
             DB.save(game: game)
             goToGame(gameid: game.id)
         }
@@ -167,10 +156,31 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let gameId = gameIds[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell") as! MainTableViewCell
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = gameId
+        DB.userExists(uid: opponentUids[indexPath.row]) { username in
+            DispatchQueue.main.async {
+                cell.usernameLabel.text = username
+            }
+        }
+        
+        DB.gameStatus(gameid: gameIds[indexPath.row]) { status in
+            switch status {
+            case .localTurn:
+                cell.turnLabel.text = "Your turn"
+                break
+            case .remoteTurn:
+                cell.turnLabel.text = "Waiting"
+                break
+            case .localWon:
+                cell.turnLabel.text = "Won!"
+                break
+            case .remoteWon:
+                cell.turnLabel.text = "Lost"
+                break
+            }
+        }
+        
         return cell
     }
 }
@@ -186,3 +196,15 @@ extension MainViewController: CreateUsernameViewControllerDelegate {
         loadUserData()
     }
 }
+
+
+
+
+//for family: String in UIFont.familyNames
+//{
+//    print("\(family)")
+//    for names: String in UIFont.fontNames(forFamilyName: family)
+//    {
+//        print("== \(names)")
+//    }
+//}

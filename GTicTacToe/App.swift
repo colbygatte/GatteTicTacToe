@@ -21,7 +21,7 @@ struct App {
     
     static func setupTheme() {
         UIApplication.shared.delegate?.window??.tintColor = App.Theme.tintColor
-        
+        UILabel.appearance().font = UIFont(name: "OpenSans", size: 16.0)
         UINavigationBar.appearance().barTintColor = App.Theme.navBarColor
         
         //UIView.appearance().backgroundColor = App.Theme.viewBackgroundColor

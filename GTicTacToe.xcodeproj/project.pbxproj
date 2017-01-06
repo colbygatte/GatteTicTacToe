@@ -10,6 +10,11 @@
 		B26B348EC2AD07406268536B /* Pods_GTicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C775C6430E30C05060E9A67E /* Pods_GTicTacToe.framework */; };
 		E99230361E1EAA03006C2F02 /* CreateUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99230351E1EAA03006C2F02 /* CreateUsernameViewController.swift */; };
 		E99230381E1ECDEB006C2F02 /* tac_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E99230371E1ECDEB006C2F02 /* tac_background.png */; };
+		E992303A1E1F0320006C2F02 /* ChooseTacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99230391E1F0320006C2F02 /* ChooseTacView.swift */; };
+		E992303C1E1F0327006C2F02 /* ChooseTacView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E992303B1E1F0327006C2F02 /* ChooseTacView.xib */; };
+		E992303F1E1F1261006C2F02 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992303D1E1F1261006C2F02 /* MainTableViewCell.swift */; };
+		E99230401E1F1261006C2F02 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E992303E1E1F1261006C2F02 /* MainTableViewCell.xib */; };
+		E99230421E1F58DD006C2F02 /* Open Sans regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E99230411E1F5660006C2F02 /* Open Sans regular.ttf */; };
 		E9B581D01E1CB35200F6E68F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B581CF1E1CB35200F6E68F /* AppDelegate.swift */; };
 		E9B581D51E1CB35200F6E68F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9B581D31E1CB35200F6E68F /* Main.storyboard */; };
 		E9B581D71E1CB35200F6E68F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9B581D61E1CB35200F6E68F /* Assets.xcassets */; };
@@ -41,6 +46,11 @@
 		C775C6430E30C05060E9A67E /* Pods_GTicTacToe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GTicTacToe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99230351E1EAA03006C2F02 /* CreateUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUsernameViewController.swift; sourceTree = "<group>"; };
 		E99230371E1ECDEB006C2F02 /* tac_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tac_background.png; sourceTree = "<group>"; };
+		E99230391E1F0320006C2F02 /* ChooseTacView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTacView.swift; sourceTree = "<group>"; };
+		E992303B1E1F0327006C2F02 /* ChooseTacView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseTacView.xib; sourceTree = "<group>"; };
+		E992303D1E1F1261006C2F02 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		E992303E1E1F1261006C2F02 /* MainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+		E99230411E1F5660006C2F02 /* Open Sans regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Open Sans regular.ttf"; sourceTree = "<group>"; };
 		E9B581CC1E1CB35200F6E68F /* GTicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B581CF1E1CB35200F6E68F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9B581D41E1CB35200F6E68F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -132,6 +142,7 @@
 				E99230371E1ECDEB006C2F02 /* tac_background.png */,
 				E9B581F01E1CBADA00F6E68F /* GoogleService-Info.plist */,
 				E9B581FF1E1CCAC900F6E68F /* Teko 300.ttf */,
+				E99230411E1F5660006C2F02 /* Open Sans regular.ttf */,
 			);
 			path = GTicTacToe;
 			sourceTree = "<group>";
@@ -141,8 +152,12 @@
 			children = (
 				E9B581D31E1CB35200F6E68F /* Main.storyboard */,
 				E9B581F51E1CBB5100F6E68F /* Game.storyboard */,
+				E992303B1E1F0327006C2F02 /* ChooseTacView.xib */,
+				E99230391E1F0320006C2F02 /* ChooseTacView.swift */,
 				E9B581F71E1CBC8A00F6E68F /* BoardView.xib */,
 				E9B581F91E1CBE5900F6E68F /* BoardView.swift */,
+				E992303E1E1F1261006C2F02 /* MainTableViewCell.xib */,
+				E992303D1E1F1261006C2F02 /* MainTableViewCell.swift */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -242,11 +257,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E99230421E1F58DD006C2F02 /* Open Sans regular.ttf in Resources */,
+				E99230401E1F1261006C2F02 /* MainTableViewCell.xib in Resources */,
 				E9B582001E1CCBAF00F6E68F /* Teko 300.ttf in Resources */,
 				E9B581ED1E1CBA0100F6E68F /* tictactoeboard.png in Resources */,
 				E9B581EC1E1CBA0100F6E68F /* tictactoe.png in Resources */,
 				E9B581EB1E1CBA0100F6E68F /* o.png in Resources */,
 				E9B582031E1CDD1D00F6E68F /* youlose.png in Resources */,
+				E992303C1E1F0327006C2F02 /* ChooseTacView.xib in Resources */,
 				E9B581EF1E1CBA0100F6E68F /* x.png in Resources */,
 				E9B581DA1E1CB35200F6E68F /* LaunchScreen.storyboard in Resources */,
 				E9B581D71E1CB35200F6E68F /* Assets.xcassets in Resources */,
@@ -316,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E992303F1E1F1261006C2F02 /* MainTableViewCell.swift in Sources */,
 				E9B581FC1E1CC20400F6E68F /* GameViewController.swift in Sources */,
 				E9B581FA1E1CBE5900F6E68F /* BoardView.swift in Sources */,
 				E9B581E31E1CB49500F6E68F /* App.swift in Sources */,
@@ -323,6 +342,7 @@
 				E9B5820A1E1CE06400F6E68F /* GTGame.swift in Sources */,
 				E9B581FE1E1CC21000F6E68F /* MainViewController.swift in Sources */,
 				E9B582081E1CDFB800F6E68F /* GTUser.swift in Sources */,
+				E992303A1E1F0320006C2F02 /* ChooseTacView.swift in Sources */,
 				E9B582061E1CDF8800F6E68F /* DB.swift in Sources */,
 				E99230361E1EAA03006C2F02 /* CreateUsernameViewController.swift in Sources */,
 			);
