@@ -11,8 +11,10 @@
 import UIKit
 
 class GameViewController: UIViewController {
+    @IBOutlet weak var backgroundBoardView: UIView!
     @IBOutlet weak var boardView: BoardView!
     @IBOutlet weak var chooseTacView: ChooseTacView!
+    @IBOutlet weak var chooseTacViewLabel: UILabel!
     @IBOutlet weak var newGameView: UIView!
     @IBOutlet weak var turnLabel: UILabel!
     @IBOutlet weak var winsLabel: UILabel!
@@ -35,6 +37,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         setupTheme()
         newGameView.layer.cornerRadius = 20.0
+        backgroundBoardView.layer.cornerRadius = 20.0
         
         boardView.setFrame()
         chooseTacView.setFrame()
@@ -165,6 +168,9 @@ class GameViewController: UIViewController {
 extension GameViewController: BoardViewDelegate  {
     func board(playedPosition: Int) {
         DB.save(game: game!)
+        if let username = App.loggedInUser.username {
+            GTPushNotifications.sendNotifaction(toUid: game!.remotePlayerUid, message: "Your move against \(username).")
+        }
         
         if game?.gameWinner != nil {
             declareWinner()

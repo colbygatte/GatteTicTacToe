@@ -38,6 +38,10 @@ class DB {
         })
     }
     
+    static func save(apnToken: String, forUser: String) {
+        DB.ref.child("apnTokens").child(forUser).setValue(apnToken)
+    }
+    
     static func save(game: GTGame) {
         DB.gamesRef.child(game.id).setValue(game.toFirebaseObject())
         DB.ref.child("userData").child(game.player1Uid).child("games").child(game.player2Uid).setValue(game.id)

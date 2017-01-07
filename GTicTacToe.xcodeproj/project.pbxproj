@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B26B348EC2AD07406268536B /* Pods_GTicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C775C6430E30C05060E9A67E /* Pods_GTicTacToe.framework */; };
+		E90BCB701E2093CF00D4842E /* GTPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90BCB6F1E2093CF00D4842E /* GTPushNotification.swift */; };
 		E99230361E1EAA03006C2F02 /* CreateUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99230351E1EAA03006C2F02 /* CreateUsernameViewController.swift */; };
 		E99230381E1ECDEB006C2F02 /* tac_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E99230371E1ECDEB006C2F02 /* tac_background.png */; };
 		E992303A1E1F0320006C2F02 /* ChooseTacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99230391E1F0320006C2F02 /* ChooseTacView.swift */; };
@@ -44,6 +45,7 @@
 		29E022DB8A17031B8B117BEC /* Pods-GTicTacToe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTicTacToe.release.xcconfig"; path = "Pods/Target Support Files/Pods-GTicTacToe/Pods-GTicTacToe.release.xcconfig"; sourceTree = "<group>"; };
 		583596A08F42BF38995E71EC /* Pods-GTicTacToe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTicTacToe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GTicTacToe/Pods-GTicTacToe.debug.xcconfig"; sourceTree = "<group>"; };
 		C775C6430E30C05060E9A67E /* Pods_GTicTacToe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GTicTacToe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E90BCB6F1E2093CF00D4842E /* GTPushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GTPushNotification.swift; sourceTree = "<group>"; };
 		E99230351E1EAA03006C2F02 /* CreateUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUsernameViewController.swift; sourceTree = "<group>"; };
 		E99230371E1ECDEB006C2F02 /* tac_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tac_background.png; sourceTree = "<group>"; };
 		E99230391E1F0320006C2F02 /* ChooseTacView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTacView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E99230431E1F73A7006C2F02 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E9B581FD1E1CC21000F6E68F /* MainViewController.swift */,
+				E992303D1E1F1261006C2F02 /* MainTableViewCell.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		E99230441E1F73B2006C2F02 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				E9B581FB1E1CC20400F6E68F /* GameViewController.swift */,
+				E9B581F91E1CBE5900F6E68F /* BoardView.swift */,
+				E99230391E1F0320006C2F02 /* ChooseTacView.swift */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
 		E9B581C31E1CB35200F6E68F = {
 			isa = PBXGroup;
 			children = (
@@ -153,11 +174,8 @@
 				E9B581D31E1CB35200F6E68F /* Main.storyboard */,
 				E9B581F51E1CBB5100F6E68F /* Game.storyboard */,
 				E992303B1E1F0327006C2F02 /* ChooseTacView.xib */,
-				E99230391E1F0320006C2F02 /* ChooseTacView.swift */,
 				E9B581F71E1CBC8A00F6E68F /* BoardView.xib */,
-				E9B581F91E1CBE5900F6E68F /* BoardView.swift */,
 				E992303E1E1F1261006C2F02 /* MainTableViewCell.xib */,
-				E992303D1E1F1261006C2F02 /* MainTableViewCell.swift */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -167,6 +185,7 @@
 			children = (
 				E9B582071E1CDFB800F6E68F /* GTUser.swift */,
 				E9B582091E1CE06400F6E68F /* GTGame.swift */,
+				E90BCB6F1E2093CF00D4842E /* GTPushNotification.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -174,9 +193,9 @@
 		E9B581F41E1CBB3400F6E68F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E9B581FD1E1CC21000F6E68F /* MainViewController.swift */,
+				E99230431E1F73A7006C2F02 /* Main */,
+				E99230441E1F73B2006C2F02 /* Game */,
 				E99230351E1EAA03006C2F02 /* CreateUsernameViewController.swift */,
-				E9B581FB1E1CC20400F6E68F /* GameViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -227,6 +246,9 @@
 						DevelopmentTeam = 6BTW725B4B;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -335,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E992303F1E1F1261006C2F02 /* MainTableViewCell.swift in Sources */,
+				E90BCB701E2093CF00D4842E /* GTPushNotification.swift in Sources */,
 				E9B581FC1E1CC20400F6E68F /* GameViewController.swift in Sources */,
 				E9B581FA1E1CBE5900F6E68F /* BoardView.swift in Sources */,
 				E9B581E31E1CB49500F6E68F /* App.swift in Sources */,
@@ -472,7 +495,7 @@
 				DEVELOPMENT_TEAM = 6BTW725B4B;
 				INFOPLIST_FILE = GTicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.colbyg.GTicTacToe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colbyg.ColbyGatteTicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -487,7 +510,7 @@
 				DEVELOPMENT_TEAM = 6BTW725B4B;
 				INFOPLIST_FILE = GTicTacToe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.colbyg.GTicTacToe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colbyg.ColbyGatteTicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

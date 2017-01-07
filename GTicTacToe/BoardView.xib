@@ -75,6 +75,6 @@
         </view>
     </objects>
     <resources>
-        <image name="tictactoeboard.png" width="880" height="880"/>
+        <image name="tictactoeboard.png" width="300" height="300"/>
     </resources>
 </document>

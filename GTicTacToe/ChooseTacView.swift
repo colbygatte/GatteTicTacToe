@@ -46,13 +46,13 @@ class ChooseTacView: UIView {
         if let imageView = recognizer.view as? UIImageView {
             if imageView == xImageView {
                 is_o = false
-                animate() {
+                App.animate() {
                     self.xSelectedImageView.alpha = 1.0
                     self.oSelectedImageView.alpha = 0.0
                 }
             } else {
                 is_o = true
-                animate() {
+                App.animate() {
                     self.xSelectedImageView.alpha = 0.0
                     self.oSelectedImageView.alpha = 1.0
                 }
@@ -69,12 +69,6 @@ class ChooseTacView: UIView {
             is_o = true
             self.xSelectedImageView.alpha = 0.0
             self.oSelectedImageView.alpha = 1.0
-        }
-    }
-    
-    func animate(block: @escaping ()->()) {
-        UIView.animate(withDuration: TimeInterval(0.2)) {
-            block()
         }
     }
 }

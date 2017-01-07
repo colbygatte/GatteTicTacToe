@@ -11,7 +11,12 @@ import UIKit
 struct App {
     static var loggedInUser: GTUser!
     static var loggedInUid: String!
-    static var apnToken: String!
+    static var apnToken: String? {
+        didSet {
+            guard let loggedInUid = App.loggedInUid else { return }
+            DB.save(apnToken: apnToken!, forUser: loggedInUid)
+        }
+    }
     
     struct Theme {
         static var viewBackgroundColor = UIColor.hexString(hex: "91A7B3")
@@ -25,6 +30,12 @@ struct App {
         UINavigationBar.appearance().barTintColor = App.Theme.navBarColor
         
         //UIView.appearance().backgroundColor = App.Theme.viewBackgroundColor
+    }
+    
+    static func animate(block: @escaping ()->()) {
+        UIView.animate(withDuration: TimeInterval(0.3)) { 
+            block()
+        }
     }
 }
 

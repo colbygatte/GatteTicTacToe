@@ -20,7 +20,9 @@ class GTGame: NSObject {
     var player1Uid: String!
     var player2Uid: String!
     
-    var playsLeft = 511
+    var playsLeft: Int {
+        return 511 - localPlayer - remotePlayer
+    }
     var localPlayer: Int = 0
     var remotePlayer: Int = 0
     var nextToPlay: String!
@@ -30,9 +32,7 @@ class GTGame: NSObject {
         id = snapshot.key
         
         let values = snapshot.value as! [String: Any]
-        playsLeft = values["playsLeft"] as! Int
         cat = values["cat"] as! Int
-        
         player1Uid = values["player1Uid"] as! String
         player2Uid = values["player2Uid"] as! String
         nextToPlay = values["nextToPlay"] as! String
@@ -63,7 +63,6 @@ class GTGame: NSObject {
     }
     
     func reset() {
-        playsLeft = 511
         remotePlayer = 0
         localPlayer = 0
         gameWinner = nil
@@ -74,7 +73,6 @@ class GTGame: NSObject {
         var object: [String: Any] = [:]
         object["player1Uid"] = player1Uid
         object["player2Uid"] = player2Uid
-        object["playsLeft"] = playsLeft
         object["nextToPlay"] = nextToPlay
         object["gameWinner"] = gameWinner
         object["cat"] = cat
@@ -98,7 +96,6 @@ class GTGame: NSObject {
     
     func play(_ play: Int) -> Bool {
         if playsLeft & play != 0 && nextToPlay == localPlayerUid {
-            playsLeft -= play
             localPlayer += play
             nextToPlay = remotePlayerUid
             return true

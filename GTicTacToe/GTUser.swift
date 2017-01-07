@@ -13,6 +13,7 @@ class GTUser: NSObject {
     var uid: String!
     var username: String!
     var games: [String: String]! // OpponentUID: GameID
+    var apnToken: String?
     
     var won: [String: Int]!
     var lost: [String: Int]!

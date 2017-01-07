@@ -95,13 +95,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="xfW-Wb-EFN"/>
                     <connections>
+                        <outlet property="backgroundBoardView" destination="beC-dv-1EN" id="Pvb-mq-KGf"/>
                         <outlet property="boardView" destination="Qhv-W4-p1p" id="FK4-LR-FlH"/>
                         <outlet property="chooseTacView" destination="mDk-ad-Qf1" id="V8Q-Ah-DCa"/>
+                        <outlet property="chooseTacViewLabel" destination="i4p-u4-ukO" id="9Xx-s7-moa"/>
                         <outlet property="localTacImageView" destination="ZXT-VG-9j2" id="1j5-Mk-l25"/>
                         <outlet property="lossesLabel" destination="Hlz-AO-DFs" id="Ugn-eh-vKZ"/>
                         <outlet property="newGameView" destination="7Z7-nX-Hwe" id="Xh8-xV-swe"/>
                         <outlet property="tieLabel" destination="vXh-ar-5iO" id="Xlf-kT-xhc"/>
-                        <outlet property="turnLabel" destination="i4p-u4-ukO" id="KRZ-hs-Ekx"/>
+                        <outlet property="turnLabel" destination="x68-zg-THz" id="yqv-ef-rGc"/>
                         <outlet property="winsLabel" destination="VBB-MS-Ba9" id="UC6-26-gW4"/>
                     </connections>
                 </viewController>

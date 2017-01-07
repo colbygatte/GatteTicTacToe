@@ -38,6 +38,13 @@ class MainViewController: UIViewController {
         FIRAuth.auth()?.signInAnonymously() { user, error in
             if error == nil && user != nil {
                 App.loggedInUid = user!.uid
+                if App.apnToken != nil {
+                    // When the user is logged in before the apnToken is set
+                    // This line won't be executed,
+                    // but it will be executed when apnToken is set.
+                    DB.save(apnToken: App.apnToken!, forUser: user!.uid)
+                }
+                
                 self.checkForUsername()
             } else {
                 print("Error signing in anonymously.")
@@ -61,6 +68,7 @@ class MainViewController: UIViewController {
     func loadUserData() {
         DB.observeUser(uid: App.loggedInUid) { snap in
             let values = snap.value as? [String: Any]
+            
             if let games = values?["games"] as? [String: String] {
                 App.loggedInUser.games = games
             } else {
@@ -135,6 +143,9 @@ class MainViewController: UIViewController {
         } else {
             let gameRef = DB.gamesRef.childByAutoId()
             let game: GTGame
+            if let username = App.loggedInUser.username {
+                GTPushNotifications.sendNotifaction(toUid: uid, message: "\(username) wants to play!")
+            }
             game = GTGame(id: gameRef.key, localPlayerUid: uid, remotePlayerUid: App.loggedInUser.uid)
             DB.save(game: game)
             goToGame(gameid: game.id)
