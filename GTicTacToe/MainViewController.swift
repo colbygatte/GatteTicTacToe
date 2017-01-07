@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: "MainCell")
+        registerForPreviewing(with: self, sourceView: tableView)
         gameIds = []
         opponentUids = []
 
@@ -153,11 +154,15 @@ class MainViewController: UIViewController {
     }
     
     
-    func goToGame(gameid: String) {
+    func viewControllerFor(gameId: String) -> UIViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Game") as! GameViewController
-        vc.loadGameId = gameid
-        navigationController?.pushViewController(vc, animated: true)
+        vc.loadGameId = gameId
+        return vc
+    }
+    
+    func goToGame(gameid: String) {
+        navigationController?.pushViewController(viewControllerFor(gameId: gameid), animated: true)
     }
 }
 
@@ -176,20 +181,8 @@ extension MainViewController: UITableViewDataSource {
         }
         
         DB.gameStatus(gameid: gameIds[indexPath.row]) { status in
-            switch status {
-            case .localTurn:
-                cell.turnLabel.text = "Your turn"
-                break
-            case .remoteTurn:
-                cell.turnLabel.text = "Waiting"
-                break
-            case .localWon:
-                cell.turnLabel.text = "Won!"
-                break
-            case .remoteWon:
-                cell.turnLabel.text = "Lost"
-                break
-            }
+            let texts: [GTGameStatus: String] = [.localTurn: "Your turn", .remoteTurn: "Waiting", .localWon: "Won!", .remoteWon: "Lost"]
+            cell.turnLabel.text = texts[status]
         }
         
         return cell
@@ -205,6 +198,21 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: CreateUsernameViewControllerDelegate {
     func usernameCreated() {
         loadUserData()
+    }
+}
+
+extension MainViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: false)
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        if let indexPath = tableView.indexPathForRow(at: location) {
+            previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+            return viewControllerFor(gameId: gameIds[indexPath.row])
+        }
+        
+        return nil
     }
 }
 

@@ -117,6 +117,14 @@
             </objects>
             <point key="canvasLocation" x="972" y="37.331334332833585"/>
         </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="SmQ-YQ-kYE">
+            <objects>
+                <viewControllerPlaceholder id="MGv-o0-3Wa" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LAY-a7-3Dn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1604" y="-27"/>
+        </scene>
         <!--Create Username View Controller-->
         <scene sceneID="nLI-d4-nlJ">
             <objects>
@@ -167,10 +175,9 @@
         <!--Navigation Controller-->
         <scene sceneID="KPt-ff-4HD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LCa-M3-Eo9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9iJ-tP-Xzu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2AE-AH-uqL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2AE-AH-uqL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -179,16 +186,16 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Zd7-2s-Yb3"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LCa-M3-Eo9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="63f-1E-NTp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U7p-n9-vgT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="meC-Wg-LMi" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="E55-Jm-Bzw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E55-Jm-Bzw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -197,6 +204,7 @@
                         <segue destination="DLw-8r-Bfb" kind="relationship" relationship="rootViewController" id="dTE-vf-X8l"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U7p-n9-vgT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="33" y="782"/>
         </scene>
