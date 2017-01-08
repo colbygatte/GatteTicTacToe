@@ -27,7 +27,6 @@
 		E9B581ED1E1CBA0100F6E68F /* tictactoeboard.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B581E71E1CBA0100F6E68F /* tictactoeboard.png */; };
 		E9B581EE1E1CBA0100F6E68F /* tictactoetransparent.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B581E81E1CBA0100F6E68F /* tictactoetransparent.png */; };
 		E9B581EF1E1CBA0100F6E68F /* x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B581E91E1CBA0100F6E68F /* x.png */; };
-		E9B581F11E1CBADA00F6E68F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9B581F01E1CBADA00F6E68F /* GoogleService-Info.plist */; };
 		E9B581F61E1CBB5100F6E68F /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9B581F51E1CBB5100F6E68F /* Game.storyboard */; };
 		E9B581F81E1CBC8A00F6E68F /* BoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B581F71E1CBC8A00F6E68F /* BoardView.xib */; };
 		E9B581FA1E1CBE5900F6E68F /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B581F91E1CBE5900F6E68F /* BoardView.swift */; };
@@ -39,6 +38,10 @@
 		E9B582061E1CDF8800F6E68F /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B582051E1CDF8800F6E68F /* DB.swift */; };
 		E9B582081E1CDFB800F6E68F /* GTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B582071E1CDFB800F6E68F /* GTUser.swift */; };
 		E9B5820A1E1CE06400F6E68F /* GTGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B582091E1CE06400F6E68F /* GTGame.swift */; };
+		E9E34E371E22F9CC00DF9267 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9E34E361E22F9CC00DF9267 /* GoogleService-Info.plist */; };
+		E9E34E391E22FECA00DF9267 /* icontransparent.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E34E381E22FECA00DF9267 /* icontransparent.png */; };
+		E9E34E3C1E23018C00DF9267 /* loginlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E34E3A1E23018C00DF9267 /* loginlogo.png */; };
+		E9E34E3D1E23018C00DF9267 /* logingobutton.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E34E3B1E23018C00DF9267 /* logingobutton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +70,6 @@
 		E9B581E71E1CBA0100F6E68F /* tictactoeboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tictactoeboard.png; sourceTree = "<group>"; };
 		E9B581E81E1CBA0100F6E68F /* tictactoetransparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tictactoetransparent.png; sourceTree = "<group>"; };
 		E9B581E91E1CBA0100F6E68F /* x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x.png; sourceTree = "<group>"; };
-		E9B581F01E1CBADA00F6E68F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9B581F51E1CBB5100F6E68F /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		E9B581F71E1CBC8A00F6E68F /* BoardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardView.xib; sourceTree = "<group>"; };
 		E9B581F91E1CBE5900F6E68F /* BoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,10 @@
 		E9B582051E1CDF8800F6E68F /* DB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		E9B582071E1CDFB800F6E68F /* GTUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GTUser.swift; sourceTree = "<group>"; };
 		E9B582091E1CE06400F6E68F /* GTGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GTGame.swift; sourceTree = "<group>"; };
+		E9E34E361E22F9CC00DF9267 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E9E34E381E22FECA00DF9267 /* icontransparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icontransparent.png; path = images/icontransparent.png; sourceTree = "<group>"; };
+		E9E34E3A1E23018C00DF9267 /* loginlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginlogo.png; path = images/loginlogo.png; sourceTree = "<group>"; };
+		E9E34E3B1E23018C00DF9267 /* logingobutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logingobutton.png; path = images/logingobutton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				E9B581FD1E1CC21000F6E68F /* MainViewController.swift */,
+				E9E34E381E22FECA00DF9267 /* icontransparent.png */,
 				E992303D1E1F1261006C2F02 /* MainTableViewCell.swift */,
 			);
 			name = Main;
@@ -161,9 +168,9 @@
 				E9B582011E1CDD1D00F6E68F /* youlose.png */,
 				E9B582021E1CDD1D00F6E68F /* youwin.png */,
 				E99230371E1ECDEB006C2F02 /* tac_background.png */,
-				E9B581F01E1CBADA00F6E68F /* GoogleService-Info.plist */,
 				E9B581FF1E1CCAC900F6E68F /* Teko 300.ttf */,
 				E99230411E1F5660006C2F02 /* Open Sans regular.ttf */,
+				E9E34E361E22F9CC00DF9267 /* GoogleService-Info.plist */,
 			);
 			path = GTicTacToe;
 			sourceTree = "<group>";
@@ -172,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				E9B581D31E1CB35200F6E68F /* Main.storyboard */,
+				E9E34E3A1E23018C00DF9267 /* loginlogo.png */,
+				E9E34E3B1E23018C00DF9267 /* logingobutton.png */,
 				E9B581F51E1CBB5100F6E68F /* Game.storyboard */,
 				E992303B1E1F0327006C2F02 /* ChooseTacView.xib */,
 				E9B581F71E1CBC8A00F6E68F /* BoardView.xib */,
@@ -280,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E99230421E1F58DD006C2F02 /* Open Sans regular.ttf in Resources */,
+				E9E34E3C1E23018C00DF9267 /* loginlogo.png in Resources */,
 				E99230401E1F1261006C2F02 /* MainTableViewCell.xib in Resources */,
 				E9B582001E1CCBAF00F6E68F /* Teko 300.ttf in Resources */,
 				E9B581ED1E1CBA0100F6E68F /* tictactoeboard.png in Resources */,
@@ -290,14 +300,16 @@
 				E9B581EF1E1CBA0100F6E68F /* x.png in Resources */,
 				E9B581DA1E1CB35200F6E68F /* LaunchScreen.storyboard in Resources */,
 				E9B581D71E1CB35200F6E68F /* Assets.xcassets in Resources */,
+				E9E34E371E22F9CC00DF9267 /* GoogleService-Info.plist in Resources */,
 				E9B582041E1CDD1D00F6E68F /* youwin.png in Resources */,
 				E9B581F81E1CBC8A00F6E68F /* BoardView.xib in Resources */,
 				E9B581EE1E1CBA0100F6E68F /* tictactoetransparent.png in Resources */,
 				E9B581EA1E1CBA0100F6E68F /* newgame.png in Resources */,
 				E99230381E1ECDEB006C2F02 /* tac_background.png in Resources */,
+				E9E34E391E22FECA00DF9267 /* icontransparent.png in Resources */,
 				E9B581D51E1CB35200F6E68F /* Main.storyboard in Resources */,
 				E9B581F61E1CBB5100F6E68F /* Game.storyboard in Resources */,
-				E9B581F11E1CBADA00F6E68F /* GoogleService-Info.plist in Resources */,
+				E9E34E3D1E23018C00DF9267 /* logingobutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

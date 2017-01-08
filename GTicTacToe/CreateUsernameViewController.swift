@@ -15,19 +15,31 @@ protocol CreateUsernameViewControllerDelegate {
 class CreateUsernameViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var goButtonImageView: UIImageView!
     var delegate: CreateUsernameViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.hidesBackButton = true
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(tapped(recognizer:)))
+        tap.minimumPressDuration = 0
+        goButtonImageView.addGestureRecognizer(tap)
+        usernameTextField.becomeFirstResponder()
     }
     
     func error(message: String) {
         
     }
     
-    @IBAction func createUsernameButtonPressed() {
+    func tapped(recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
+            
+        } else if recognizer.state == .ended {
+            createUsernameButtonPressed()
+        }
+    }
+    
+    func createUsernameButtonPressed() {
         if let username = usernameTextField.text {
             DB.userExists(username: username, completion: { uid in
                 if uid != nil {
@@ -36,7 +48,7 @@ class CreateUsernameViewController: UIViewController {
                     App.loggedInUser = GTUser(uid: App.loggedInUid, username: username)
                     DB.save(user: App.loggedInUser)
                     self.delegate?.usernameCreated()
-                    _ = self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
                 }
             })
         }

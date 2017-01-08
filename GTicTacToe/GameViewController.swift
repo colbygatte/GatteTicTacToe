@@ -21,6 +21,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var lossesLabel: UILabel!
     @IBOutlet weak var tieLabel: UILabel!
     @IBOutlet weak var localTacImageView: UIImageView!
+    var opponentName: String?
+    
     
     var loadGameId: String!
     var game: GTGame?
@@ -36,14 +38,20 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTheme()
-        newGameView.layer.cornerRadius = 20.0
-        backgroundBoardView.layer.cornerRadius = 20.0
+        
+        //newGameView.layer.cornerRadius = 20.0
+        //backgroundBoardView.layer.cornerRadius = 20.0
         
         boardView.setFrame()
         chooseTacView.setFrame()
         boardView.delegate = self
         isRemoteGame = false
-        turnLabel.text = ""
+        
+        if let name = opponentName {
+            title = "Playing " + name
+        } else {
+            title = "TicTacToe"
+        }
         
         begin()
     }

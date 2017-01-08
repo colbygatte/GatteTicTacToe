@@ -6,24 +6,22 @@
 	<string>ca-app-pub-3940256099942544/2934735716</string>
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
-	<key>CFBundleIdentifier</key>
-	<string></string>
 	<key>CLIENT_ID</key>
-	<string>1044174975922-veaql8rp4jifscoh6l5jvdvl0c3pi6bc.apps.googleusercontent.com</string>
+	<string>740667661638-518tff7dft46864q9siqcu0cdrpqh5ud.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1044174975922-veaql8rp4jifscoh6l5jvdvl0c3pi6bc</string>
+	<string>com.googleusercontent.apps.740667661638-518tff7dft46864q9siqcu0cdrpqh5ud</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCgZzxNlPCNVFebnoWeMLNWlud1Sg7ybfU</string>
+	<string>AIzaSyBELp130ts4Ef8JlunCKMrTy7QoTDvDww8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1044174975922</string>
+	<string>740667661638</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.colbyg.GTicTacToe</string>
+	<string>com.colbyg.ColbyGatteTicTacToe</string>
 	<key>PROJECT_ID</key>
-	<string>gtictactoe-90895</string>
+	<string>colbygattetictactoe</string>
 	<key>STORAGE_BUCKET</key>
-	<string>gtictactoe-90895.appspot.com</string>
+	<string>colbygattetictactoe.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -35,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1044174975922:ios:da1accfc224d4c5e</string>
+	<string>1:740667661638:ios:68e2bc16d9b20253</string>
 	<key>DATABASE_URL</key>
-	<string>https://gtictactoe-90895.firebaseio.com</string>
+	<string>https://colbygattetictactoe.firebaseio.com</string>
 </dict>
 </plist>

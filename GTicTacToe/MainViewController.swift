@@ -19,6 +19,11 @@ class MainViewController: UIViewController {
     var gameIds: [String]!
     var opponentUids: [String]!
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +35,9 @@ class MainViewController: UIViewController {
         gameIds = []
         opponentUids = []
 
-        auth()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Games", style: .plain, target: self, action: nil)
         
+        auth()
     }
     
     // Step 1
@@ -102,7 +108,7 @@ class MainViewController: UIViewController {
     func sendToCreateUsername() {
         let vc = storyboard?.instantiateViewController(withIdentifier: "CreateUsername") as! CreateUsernameViewController
         vc.delegate = self
-        navigationController?.pushViewController(vc, animated: true)
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func addFriendButtonPressed() {
@@ -158,6 +164,11 @@ class MainViewController: UIViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Game") as! GameViewController
         vc.loadGameId = gameId
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let cell = tableView.cellForRow(at: indexPath) as! MainTableViewCell
+            vc.opponentName = cell.usernameLabel.text
+        }
+        
         return vc
     }
     
